@@ -25,7 +25,7 @@
         {% block body %}
         <!-- Application specific HTML -->
         <div id="header-div" class="clearfix with-margins">
-            <div class="pull-left"><a href="{{ url_for('pages.home_page') }}"><span class="header-title">{{ user_manager.app_name }}</span></a></div>
+            <div class="pull-left"><a href="{{ url_for('pages.home_page') }}"><span class="header-title">{{ user_manager.app_name }} - V1.1</span></a></div>
             <div class="pull-right">
                 {% if current_user.is_authenticated %}
                     <a href="{{ url_for('pages.user_profile_page') }}">{{ current_user.first_name or current_user.user_auth.username }}</a>
