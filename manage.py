@@ -12,6 +12,4 @@ if __name__ == "__main__":
     # Manage the command line parameters such as:
     # - python manage.py runserver
     # - python manage.py db
-    from app import manager
-
-    manager.run()
+    app.run()
