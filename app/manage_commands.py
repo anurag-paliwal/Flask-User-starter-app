@@ -11,3 +11,4 @@ from app import manager, create_users
 def init_db():
     """ Initialize the database."""
     create_users()
+
