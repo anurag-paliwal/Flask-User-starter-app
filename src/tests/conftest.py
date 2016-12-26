@@ -19,11 +19,12 @@ the_app = create_app(dict(
     WTF_CSRF_ENABLED=False,  # Disable CSRF form validation
 ))
 
-# Create and populate roles and users tables
-create_users()
 
 # Setup an application context (since the tests run outside of the webserver context)
 the_app.app_context().push()
+
+# Create and populate roles and users tables
+create_users()
 
 
 @pytest.fixture(scope='session')
