@@ -1,0 +1,16 @@
+version: '2'
+
+volumes:
+  build:
+    driver: local
+  cache:
+    external: true
+
+services:
+  test:
+    build:
+      context: ../../
+      dockerfile: docker/dev/Dockerfile
+    volumes:
+      - cache:/cache
+      - build:/build
