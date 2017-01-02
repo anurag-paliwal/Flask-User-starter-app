@@ -27,7 +27,7 @@ RUN chmod +x /usr/local/bin/test.sh
 
 # Set defaults for entrypoint and command string
 ENTRYPOINT ["test.sh"]
-CMD ["bash","runtests.sh"]
+CMD ["bash","runcoverage.sh"]
 
 # Add application source
 COPY src /application
