@@ -1,0 +1,34 @@
+version: '2'
+
+volumes:
+  webroot:
+    driver: local
+
+services:
+  app:
+    build:
+      context: ../../
+      dockerfile: docker/release/Dockerfile
+    environment:
+      ENV_SETTINGS_FILE: /appenv/flask_settings.py
+    volumes:
+      - webroot:/var/www/Flask-User-starter-app
+    command:
+      - uwsgi
+      - "--socket /var/www/Flask-User-starter-app/flaskuserapp.sock"
+      - "--chmod-socket=666"
+      - "--wsgi-file /appenv/bin/wsgi.py"
+      - "--master"
+      - "--die-on-term"
+      - "--callable application"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    links:
+      - app
+    ports:
+      - "8000:8000"
+    volumes:
+      - webroot:/var/www/Flask-User-starter-app

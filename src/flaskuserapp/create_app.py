@@ -8,8 +8,8 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_user import UserManager, SQLAlchemyAdapter
 from flask_wtf.csrf import CsrfProtect
 import os
-from app import app, db, manager
-from app.models import User, Role
+from flaskuserapp import db, manager, app
+from flaskuserapp.models import User, Role
 
 
 # Initialize Flask Application
@@ -17,7 +17,7 @@ def create_app(extra_config_settings={}):
 
     # ***** Initialize app config settings *****
     # Read common settings from 'app/settings.py' file
-    app.config.from_object('app.settings')
+    app.config.from_object('flaskuserapp.settings')
     default_filename = app.root_path + 'env_settings.py'
     # Read environment-specific settings from file defined by OS environment variable 'ENV_SETTINGS_FILE'
     env_settings_file = os.environ.get('ENV_SETTINGS_FILE', default_filename)
@@ -52,8 +52,8 @@ def create_app(extra_config_settings={}):
     init_email_error_handler(app)
 
     # Setup Flask-User to handle user account related forms
-    from app.models import User, MyRegisterForm
-    from app.views import user_profile_page
+    from flaskuserapp.models import User, MyRegisterForm
+    from flaskuserapp.views import user_profile_page
 
     db_adapter = SQLAlchemyAdapter(db, User)  # Setup the SQLAlchemy DB Adapter
     user_manager = UserManager(db_adapter, app,  # Init Flask-User and bind to app
@@ -147,7 +147,3 @@ def find_or_create_user(first_name, last_name, email, password, role=None):
             user.roles.append(role)
         db.session.add(user)
     return user
-
-
-
-

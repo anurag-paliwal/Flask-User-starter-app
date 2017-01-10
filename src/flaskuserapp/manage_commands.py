@@ -4,11 +4,10 @@
 #
 # Authors: Ling Thio <ling.thio@gmail.com>
 
-from app import manager, create_users
+from flaskuserapp import manager, create_users
 
 
 @manager.command
 def init_db():
     """ Initialize the database."""
     create_users()
-

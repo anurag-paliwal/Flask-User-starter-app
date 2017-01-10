@@ -68,17 +68,6 @@ release:
 	${INFO} "Building images..."
 	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) build app
 	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) build --pull nginx
-	${INFO} "Ensuring database is ready..."
-	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) run --rm agent
-	${INFO} "Collecting static files..."
-	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) run --rm app manage.py collectstatic --noinput
-	${INFO} "Running database migrations..."
-	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) run --rm app manage.py migrate --noinput
-	${INFO} "Running acceptance tests..."
-	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) up test
-	@ docker cp $$(docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) ps -q test):/reports/. reports
-	${CHECK} $(REL_PROJECT) $(REL_COMPOSE_FILE) test
-	${INFO} "Acceptance testing complete"
 
 clean:
 	${INFO} "Destroying development environment..."

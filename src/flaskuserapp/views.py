@@ -6,8 +6,8 @@
 from flask import redirect, render_template, render_template_string, Blueprint
 from flask import request, url_for
 from flask_user import current_user, login_required, roles_accepted
-from app import app, db
-from app.models import UserProfileForm
+from flaskuserapp import app, db
+from flaskuserapp.models import UserProfileForm
 
 pages_blueprint = Blueprint('pages', __name__, url_prefix='/')
 

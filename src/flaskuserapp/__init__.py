@@ -9,5 +9,5 @@ app = Flask(__name__)           # The WSGI compliant web application object
 manager = Manager(app)          # Setup Flask-Script
 db = SQLAlchemy()               # Setup Flask-SQLAlchemy
 
-from app.create_app import create_app, create_users
+from flaskuserapp.create_app import create_app, create_users
 import manage_commands

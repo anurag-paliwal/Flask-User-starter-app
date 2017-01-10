@@ -7,7 +7,7 @@
 # Authors: Ling Thio <ling.thio@gmail.com>
 
 import pytest
-from app import create_app, create_users, db as the_db
+from flaskuserapp import create_app, create_users, db as the_db
 
 # Initialize the Flask-App with test-specific settings
 the_app = create_app(dict(

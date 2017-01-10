@@ -1,0 +1,5 @@
+FROM nginx
+MAINTAINER Anurag Paliwal <anuragpaliwal@live.in>
+
+# Copy todobackend nginx configuration file
+COPY flaskuserapp.conf /etc/nginx/conf.d/flaskuserapp.conf
